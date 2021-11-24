@@ -16,6 +16,7 @@
     <Window.Resources>
         <local:ProcedenciaConverter x:Key="procedenciaConverter"></local:ProcedenciaConverter>
         <local:TipoFuenteConverter x:Key="tipoFuenteConverter"></local:TipoFuenteConverter>
+        <local:TamañoFuenteConverter x:Key="tamañoFuenteConverter"></local:TamañoFuenteConverter>
 
         <!-- Estilo GroupBox -->
         <Style TargetType="GroupBox">
@@ -52,10 +53,10 @@
                x:Key="textoComida">
             <Setter Property="FontFamily"
                     Value="{Binding Path=Tipo, Converter={StaticResource tipoFuenteConverter}}"></Setter>
-            <Setter Property="FontSize"
-                    Value="38"></Setter>
             <Setter Property="HorizontalAlignment"
                     Value="Center"></Setter>
+            <Setter Property="FontSize"
+                    Value="{Binding Path=Tipo, Converter={StaticResource tamañoFuenteConverter}}"></Setter>
         </Style>
 
         <!-- Estilo ComboBox -->
@@ -202,62 +203,65 @@
             </Style.Triggers>
         </Style>
     </Window.Resources>
-
-    <DockPanel Margin="7"
-               Background="White">
-        <StackPanel DockPanel.Dock="Right"
-                    Margin="7,0,0,0"
-                    Background="LightGray"
-                    Width="270">
-            <TextBlock>Nombre del plato</TextBlock>
-            <TextBox></TextBox>
-            <TextBlock>Foto del plato</TextBlock>
-            <TextBox></TextBox>
-            <TextBlock>Tipo de comida</TextBlock>
-            <ComboBox></ComboBox>
-            <GroupBox>
-                <UniformGrid Columns="2"
-                             Rows="2">
-                    <CheckBox>Leche</CheckBox>
-                    <CheckBox>Soja</CheckBox>
-                    <CheckBox>Gluten</CheckBox>
-                    <CheckBox>Sulfitos</CheckBox>
-                </UniformGrid>
-            </GroupBox>
-            <Button>Limpiar selección</Button>
-        </StackPanel>
-        <ListBox ItemsSource="{Binding Path=Platos}"
-                 ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-            <ListBox.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <WrapPanel></WrapPanel>
-                </ItemsPanelTemplate>
-            </ListBox.ItemsPanel>
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <Border Style="{StaticResource bordeStackPanel}">
-                        <StackPanel>
-                            <TextBlock Style="{StaticResource textoComida}"
-                                       Text="{Binding Path=Nombre}"></TextBlock>
-                            <Image Style="{StaticResource imagenesComida}"
-                                   Source="{Binding Path=Imagen}"></Image>
-                            <DockPanel LastChildFill="False">
-                                <Image Style="{StaticResource imagenTipoComida}"
-                                       Source="{Binding Path=Tipo, Converter={StaticResource procedenciaConverter}}"
-                                       DockPanel.Dock="Left"></Image>
-                                <Image Style="{StaticResource imagenGluten}"
-                                       DockPanel.Dock="Right"></Image>
-                                <Image Style="{StaticResource imagenSoja}"
-                                       DockPanel.Dock="Right"></Image>
-                                <Image Style="{StaticResource imagenLeche}"
-                                       DockPanel.Dock="Right"></Image>
-                                <Image Style="{StaticResource imagenSulfitos}"
-                                       DockPanel.Dock="Right"></Image>
-                            </DockPanel>
-                        </StackPanel>
-                    </Border>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-    </DockPanel>
+    <Border Margin="7"
+            Background="White"
+            BorderThickness="3"
+            BorderBrush="Black">
+        <DockPanel>
+            <StackPanel DockPanel.Dock="Right"
+                        Margin="7,0,0,0"
+                        Background="LightGray"
+                        Width="270">
+                <TextBlock>Nombre del plato</TextBlock>
+                <TextBox></TextBox>
+                <TextBlock>Foto del plato</TextBlock>
+                <TextBox></TextBox>
+                <TextBlock>Tipo de comida</TextBlock>
+                <ComboBox></ComboBox>
+                <GroupBox>
+                    <UniformGrid Columns="2"
+                                 Rows="2">
+                        <CheckBox>Leche</CheckBox>
+                        <CheckBox>Soja</CheckBox>
+                        <CheckBox>Gluten</CheckBox>
+                        <CheckBox>Sulfitos</CheckBox>
+                    </UniformGrid>
+                </GroupBox>
+                <Button>Limpiar selección</Button>
+            </StackPanel>
+            <ListBox ItemsSource="{Binding Path=Platos}"
+                     ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel></WrapPanel>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Border Style="{StaticResource bordeStackPanel}">
+                            <StackPanel>
+                                <TextBlock Style="{StaticResource textoComida}"
+                                           Text="{Binding Path=Nombre}"></TextBlock>
+                                <Image Style="{StaticResource imagenesComida}"
+                                       Source="{Binding Path=Imagen}"></Image>
+                                <DockPanel LastChildFill="False">
+                                    <Image Style="{StaticResource imagenTipoComida}"
+                                           Source="{Binding Path=Tipo, Converter={StaticResource procedenciaConverter}}"
+                                           DockPanel.Dock="Left"></Image>
+                                    <Image Style="{StaticResource imagenGluten}"
+                                           DockPanel.Dock="Right"></Image>
+                                    <Image Style="{StaticResource imagenSoja}"
+                                           DockPanel.Dock="Right"></Image>
+                                    <Image Style="{StaticResource imagenLeche}"
+                                           DockPanel.Dock="Right"></Image>
+                                    <Image Style="{StaticResource imagenSulfitos}"
+                                           DockPanel.Dock="Right"></Image>
+                                </DockPanel>
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </DockPanel>
+    </Border>
 </Window>

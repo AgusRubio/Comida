@@ -1,29 +1,34 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Data;
 
 namespace ComidaMVVM
 {
-    class TipoFuenteConverter : IValueConverter
+    class TamañoFuenteConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            string tipo = (string)value, fontFamily;
+            string tipo = (string)value;
+            int fontSize;
 
             switch (tipo)
             {
                 case "Americana":
-                    fontFamily = "Slim Summer";
-                    return fontFamily;
+                    fontSize = 38;
+                    return fontSize;
                 case "China":
-                    fontFamily = "Chinese Wok Food St";
-                    return fontFamily;
+                    fontSize = 20;
+                    return fontSize;
                 case "Mexicana":
-                    fontFamily = "Taco Salad";
-                    return fontFamily;
+                    fontSize = 38;
+                    return fontSize;
                 default:
-                    fontFamily = "";
-                    return fontFamily;
+                    fontSize = 20;
+                    return fontSize;
             }
         }
 
@@ -32,4 +37,6 @@ namespace ComidaMVVM
             throw new NotImplementedException();
         }
     }
+
 }
+
