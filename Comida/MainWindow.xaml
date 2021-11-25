@@ -16,7 +16,6 @@
     <Window.Resources>
         <local:ProcedenciaConverter x:Key="procedenciaConverter"></local:ProcedenciaConverter>
         <local:TipoFuenteConverter x:Key="tipoFuenteConverter"></local:TipoFuenteConverter>
-        <local:TamañoFuenteConverter x:Key="tamañoFuenteConverter"></local:TamañoFuenteConverter>
 
         <!-- Estilo GroupBox -->
         <Style TargetType="GroupBox">
@@ -55,8 +54,6 @@
                     Value="{Binding Path=Tipo, Converter={StaticResource tipoFuenteConverter}}"></Setter>
             <Setter Property="HorizontalAlignment"
                     Value="Center"></Setter>
-            <Setter Property="FontSize"
-                    Value="{Binding Path=Tipo, Converter={StaticResource tamañoFuenteConverter}}"></Setter>
         </Style>
 
         <!-- Estilo ComboBox -->
@@ -213,21 +210,21 @@
                         Background="LightGray"
                         Width="270">
                 <TextBlock>Nombre del plato</TextBlock>
-                <TextBox></TextBox>
+                <TextBox Template="{StaticResource TextBoxTemplate}" ></TextBox>
                 <TextBlock>Foto del plato</TextBlock>
-                <TextBox></TextBox>
+                <TextBox Template="{StaticResource TextBoxTemplate}"></TextBox>
                 <TextBlock>Tipo de comida</TextBlock>
                 <ComboBox></ComboBox>
-                <GroupBox>
+                <GroupBox Template="{StaticResource GroupBoxTemplate}">
                     <UniformGrid Columns="2"
                                  Rows="2">
-                        <CheckBox>Leche</CheckBox>
-                        <CheckBox>Soja</CheckBox>
-                        <CheckBox>Gluten</CheckBox>
-                        <CheckBox>Sulfitos</CheckBox>
+                        <CheckBox Template="{StaticResource CheckBoxTemplate}">Leche</CheckBox>
+                        <CheckBox Template="{StaticResource CheckBoxTemplate}">Soja</CheckBox>
+                        <CheckBox Template="{StaticResource CheckBoxTemplate}">Gluten</CheckBox>
+                        <CheckBox Template="{StaticResource CheckBoxTemplate}">Sulfitos</CheckBox>
                     </UniformGrid>
                 </GroupBox>
-                <Button>Limpiar selección</Button>
+                <Button Template="{StaticResource ButtonTemplate}">Limpiar selección</Button>
             </StackPanel>
             <ListBox ItemsSource="{Binding Path=Platos}"
                      ScrollViewer.HorizontalScrollBarVisibility="Disabled">
@@ -240,8 +237,10 @@
                     <DataTemplate>
                         <Border Style="{StaticResource bordeStackPanel}">
                             <StackPanel>
+                                <Viewbox Height="50">
                                 <TextBlock Style="{StaticResource textoComida}"
-                                           Text="{Binding Path=Nombre}"></TextBlock>
+                                               Text="{Binding Path=Nombre}"></TextBlock>
+                                </Viewbox>
                                 <Image Style="{StaticResource imagenesComida}"
                                        Source="{Binding Path=Imagen}"></Image>
                                 <DockPanel LastChildFill="False">
